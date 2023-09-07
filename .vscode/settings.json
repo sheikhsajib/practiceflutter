@@ -1,0 +1,7 @@
+{
+    "dart.flutterHotReloadOnSave": "all",
+    "dart.hotReloadOnSave": "all",
+    "files.autoSaveDelay": 500,
+    "workbench.localHistory.mergeWindow": 50,
+    "code-runner.saveFileBeforeRun": true
+}
