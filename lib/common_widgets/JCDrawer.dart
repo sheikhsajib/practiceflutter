@@ -1,32 +1,18 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/common_widgets/JCAppBar.dart';
-import 'package:practiceflutter/common_widgets/JCDrawer.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class JCDrawer extends StatefulWidget {
+  const JCDrawer({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<JCDrawer> createState() => _JCDrawerState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _JCDrawerState extends State<JCDrawer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //leading: Icon(Icons.message),
-        title: Text("Home Page"),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.green, Colors.blue])),
-        ),
-        actions: [Icon(Icons.search), Icon(Icons.notifications)],
-        //give a space between two Icons.
-      ),
       drawer: Drawer(
         child: ListView(
           children: [
