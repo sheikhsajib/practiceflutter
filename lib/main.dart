@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practiceflutter/AppBarPractice.dart';
-import 'package:practiceflutter/ColumnPractice.dart';
-import 'package:practiceflutter/ContainerBorderPractice.dart';
-import 'package:practiceflutter/ImagePractice.dart';
-import 'package:practiceflutter/RowPractice.dart';
 import 'package:practiceflutter/views/HomePage.dart';
-import 'package:practiceflutter/views/LoadingPage.dart';
 
 void main() {
   runApp(MaterialApp(
