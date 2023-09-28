@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       drawer: JCDrawer(),
+      //body: JCTopMenu(),
       body: JCTopMenu(),
     );
   }

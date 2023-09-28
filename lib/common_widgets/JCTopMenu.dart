@@ -48,11 +48,12 @@ class _JCTopMenuState extends State<JCTopMenu> {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.blue, Colors.green])),
+          gradient:
+              LinearGradient(colors: [Colors.white70, Colors.greenAccent])),
       child: Column(
         children: [
           SizedBox(
-            height: 60,
+            height: 40,
             width: double.infinity,
             child: ListView.builder(
               physics: BouncingScrollPhysics(),
@@ -77,10 +78,10 @@ class _JCTopMenuState extends State<JCTopMenu> {
                                 ? Colors.black87
                                 : Colors.black54,
                             borderRadius: current == index
-                                ? BorderRadius.circular(10)
+                                ? BorderRadius.circular(5)
                                 : BorderRadius.circular(2),
                             border: current == index
-                                ? Border.all(color: Colors.black54, width: 4)
+                                ? Border.all(color: Colors.black54, width: 2)
                                 : null),
                         child: Center(
                           child: Text(
@@ -94,15 +95,6 @@ class _JCTopMenuState extends State<JCTopMenu> {
                         ),
                       ),
                     ),
-                    // Visibility(
-                    //     visible: current == index,
-                    //     child: Container(
-                    //       width: 5,
-                    //       height: 5,
-                    //       decoration: const BoxDecoration(
-                    //           shape: BoxShape.circle,
-                    //           color: Color.fromARGB(137, 0, 0, 0)),
-                    //     ))
                   ],
                 );
               },
@@ -111,24 +103,9 @@ class _JCTopMenuState extends State<JCTopMenu> {
 
           // Top Menuwise Body
           Container(
-            //margin: const EdgeInsets.only(top: 30),
-            //width: double.infinity,
-            //height: 480,
-            //color: Colors.purple,
             child: Column(
               children: <Widget>[
                 menuPages[current] // Icon(
-                //   menuPages[current],
-                //   size: 200,
-                //   color: Colors.greenAccent,
-                // ),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                // Text(
-                //   topMenuItems[current],
-                //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-                // )
               ],
             ),
           ),

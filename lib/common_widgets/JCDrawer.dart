@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:practiceflutter/views/JCLeaderBoard.dart';
 import 'package:practiceflutter/views/JCProfiles.dart';
 
 class JCDrawer extends StatefulWidget {
@@ -46,9 +47,12 @@ class _JCDrawerState extends State<JCDrawer> {
             onTap: () => print("All Categories List"),
           ),
           ListTile(
-            leading: Icon(Icons.hexagon_sharp),
+            leading: Icon(Icons.leaderboard),
             title: Text("My Ranking"),
-            onTap: () => print("Level Based and Global Rank"),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => JCLeaderBoard()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.person),
