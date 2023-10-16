@@ -39,9 +39,7 @@ class _JCTopMenuState extends State<JCTopMenu> {
     JCPostPage(),
     JCProPlanPage(),
   ];
-
   int current = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -114,3 +112,11 @@ class _JCTopMenuState extends State<JCTopMenu> {
     );
   }
 }
+// child: PageView(
+//               children: menuPages,
+//               scrollDirection: Axis.horizontal,
+//               controller: PageController(),
+//               onPageChanged: (num) {
+//                 print(num);
+//               },
+//             ),

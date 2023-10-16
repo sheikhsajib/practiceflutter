@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practiceflutter/splash.dart';
 import 'package:practiceflutter/views/HomePage.dart';
 
 void main() {
@@ -15,9 +16,10 @@ void main() {
     //  home: ContainerBorderPractice(),
     // home: RowPractice(),
     // home: ColumnPractice(),
-    //home: ImagePractice(),
-    //home: AppBarPractice(),
-    //home: LoadingPage(),
-    home: HomePage(),
+    // home: ImagePractice(),
+    // home: AppBarPractice(),
+    // home: LoadingPage(),
+    // home: HomePage(),
+    home: SplashScreen(),
   ));
 }

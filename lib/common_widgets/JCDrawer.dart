@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:practiceflutter/views/JCLeaderBoard.dart';
 import 'package:practiceflutter/views/JCProfiles.dart';
+import 'package:practiceflutter/views/McqDesign.dart';
 
 class JCDrawer extends StatefulWidget {
   const JCDrawer({super.key});
@@ -60,9 +61,12 @@ class _JCDrawerState extends State<JCDrawer> {
             onTap: () => print("Check Your Friends and Ranking"),
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Daily Bonus"),
-            onTap: () => print("Attendance Bonus Compund Style"),
+            leading: Icon(Icons.question_answer),
+            title: Text("MCQ Design Page"),
+            onTap: () {
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => McqDesign()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.person),

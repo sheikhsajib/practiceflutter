@@ -41,7 +41,7 @@ class _JCLeaderBoardState extends State<JCLeaderBoard> {
             return ListTile(
               leading: Icon(Icons.leaderboard),
               title: Text(
-                "Player ${index + 1}",
+                "Player Name ${index + 1}",
               ),
               subtitle: Text("Total Question 200 between 10 Categories"),
               trailing: Icon(Icons.arrow_forward),

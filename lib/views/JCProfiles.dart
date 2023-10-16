@@ -55,7 +55,7 @@ class JCProfile extends StatelessWidget {
               }),
         ],
       ),
-      drawer: JCDrawer(),
+      // drawer: JCDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
