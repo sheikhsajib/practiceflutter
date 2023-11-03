@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practiceflutter/splash.dart';
-import 'package:practiceflutter/views/HomePage.dart';
+import 'package:practiceflutter/screens/HomePage/HomePage.dart';
 
 void main() {
   runApp(MaterialApp(

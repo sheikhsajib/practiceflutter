@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/views/JCLeaderBoard.dart';
-import 'package:practiceflutter/views/JCProfiles.dart';
-import 'package:practiceflutter/views/McqDesign.dart';
+import 'package:practiceflutter/screens/JCLeaderBoard.dart';
+import 'package:practiceflutter/screens/JCProfiles.dart';
+import 'package:practiceflutter/screens/ExamPage/McqDesign.dart';
 
 class JCDrawer extends StatefulWidget {
   const JCDrawer({super.key});
@@ -24,7 +24,7 @@ class _JCDrawerState extends State<JCDrawer> {
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.asset(
-                  "../assets/Images/Hridi_Green_Queen.jpg",
+                  "assets/Images/Hridi_Green_Queen.jpg",
                   width: 350, //(can't make it fit )
                 ),
               ),
@@ -32,7 +32,7 @@ class _JCDrawerState extends State<JCDrawer> {
             decoration: BoxDecoration(
                 color: Colors.amber,
                 image: DecorationImage(
-                    image: AssetImage("../assets/Images/BookLogo.jpg"),
+                    image: AssetImage("assets/Images/BookLogo.jpg"),
                     fit: BoxFit.cover)),
           ),
           ListTile(

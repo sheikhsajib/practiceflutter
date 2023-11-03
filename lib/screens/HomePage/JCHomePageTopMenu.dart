@@ -2,23 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/views/JCBasicCoursePage.dart';
-import 'package:practiceflutter/views/JCExamPage.dart';
-import 'package:practiceflutter/views/JCExplorePage.dart';
-import 'package:practiceflutter/views/JCPeopleQueryPages.dart';
-import 'package:practiceflutter/views/JCPostPage.dart';
-import 'package:practiceflutter/views/JCPracticePage.dart';
-import 'package:practiceflutter/views/JCProPlanPage.dart';
-import 'package:practiceflutter/views/StartPage.dart';
+import 'package:practiceflutter/screens/JCBasicCoursePage.dart';
+import 'package:practiceflutter/screens/ExamPage/JCExamPage.dart';
+import 'package:practiceflutter/screens/JCExplorePage.dart';
+import 'package:practiceflutter/screens/JCPeopleQueryPages.dart';
+import 'package:practiceflutter/screens/JCPostPage.dart';
+import 'package:practiceflutter/screens/JCPracticePage.dart';
+import 'package:practiceflutter/screens/JCProPlanPage.dart';
+import 'package:practiceflutter/screens/HomePage/StartPage.dart';
 
-class JCTopMenu extends StatefulWidget {
-  const JCTopMenu({super.key});
+class JCHomePageTopMenu extends StatefulWidget {
+  const JCHomePageTopMenu({super.key});
 
   @override
-  State<JCTopMenu> createState() => _JCTopMenuState();
+  State<JCHomePageTopMenu> createState() => _JCHomePageTopMenuState();
 }
 
-class _JCTopMenuState extends State<JCTopMenu> {
+class _JCHomePageTopMenuState extends State<JCHomePageTopMenu> {
   List<String> topMenuItems = [
     "Home",
     "Basic Course",

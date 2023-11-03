@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/views/McqDesign.dart';
+import 'package:practiceflutter/screens/ExamPage/McqDesign.dart';
 
 class JCPracticePage extends StatefulWidget {
   const JCPracticePage({super.key});
@@ -13,9 +13,10 @@ class JCPracticePage extends StatefulWidget {
 
 class _JCPracticePageState extends State<JCPracticePage> {
   List<String> subject_icons = [
-    '../assets/icons/Bangla_icon.png',
-    '../assets/icons/English_icon.png',
-    '../assets/icons/Bangladesh_icon.png',
+    'assets/icons/Bangla_icon.png',
+    'assets/icons/English_icon.png',
+    'assets/icons/Bangladesh_icon.png',
+    'assets/icons/Bangladesh_icon.png',
     '../assets/icons/International_icon.png',
     '../assets/icons/Math_icon.png',
     '../assets/icons/Mantal_ability_icon.png',
@@ -61,7 +62,7 @@ class _JCPracticePageState extends State<JCPracticePage> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => QuizPage(),
+              builder: (context) => LoadJson(),
             ));
 
         debugPrint("Tapped $subjectsName");

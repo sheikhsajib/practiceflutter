@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/common_widgets/JCAppBar.dart';
-import 'package:practiceflutter/common_widgets/JCDrawer.dart';
+import 'package:practiceflutter/widgets/JCAppBar.dart';
+import 'package:practiceflutter/widgets/JCDrawer.dart';
 
 List<String> subject_icons = [
   '../assets/icons/Bangla_icon.png',
