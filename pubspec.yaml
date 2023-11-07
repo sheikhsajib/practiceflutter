@@ -65,9 +65,9 @@ flutter:
     - assets/Images/Logo.jpg
     - assets/Images/BookLogo.jpg
     - assets/Images/Hridi_Green_Queen.jpg
-    - assets/results/resultVeryGood.png
-    - assets/results/resultGood.png
-    - assets/results/resultFail.png
+    - assets/results/resultVeryGood.jpg
+    - assets/results/resultGood.jpg
+    - assets/results/resultFail.jpg
     - assets/data/qbank.json
   #   - images/a_dot_ham.jpeg
 

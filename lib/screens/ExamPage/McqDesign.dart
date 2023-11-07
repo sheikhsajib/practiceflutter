@@ -58,9 +58,9 @@ class _QuizPageState extends State<QuizPage> {
   Color rightAns = Colors.green;
   Color wrongAns = Colors.orange;
 
-  int timer = 30;
-  bool cancelTimer = false;
-  String showTimer = "30";
+  // int timer = 30;
+  // bool cancelTimer = false;
+  // String showTimer = "30";
 
   Map<String, Color> mcqOptionColor = {
     "a": Colors.cyan,
@@ -68,12 +68,18 @@ class _QuizPageState extends State<QuizPage> {
     "c": Colors.cyan,
     "d": Colors.cyan,
   };
+  void resetColorifWrong() {
+    mcqOptionColor["a"] = Colors.cyan;
+    mcqOptionColor["b"] = Colors.cyan;
+    mcqOptionColor["c"] = Colors.cyan;
+    mcqOptionColor["d"] = Colors.cyan;
+  }
 
   void nextQuestion() {
-    cancelTimer = false;
-    timer = 30;
+    // cancelTimer = false;
+    // timer = 30;
     setState(() {
-      if (i < 10) {
+      if (i < 3) {
         // i = random_array[j];
         // j++;
         i++;
@@ -87,45 +93,90 @@ class _QuizPageState extends State<QuizPage> {
       mcqOptionColor["c"] = Colors.cyan;
       mcqOptionColor["d"] = Colors.cyan;
       // disableAnswer = false;
+      wrongAttempts = 0;
     });
-    startTimer();
+    // startTimer();
   }
 
   @override
   void initState() {
-    startTimer();
+    // startTimer();
     super.initState();
   }
 
-  void startTimer() async {
-    const onesec = Duration(seconds: 1);
-    Timer.periodic(onesec, (Timer t) {
-      setState(() {
-        if (timer < 1) {
-          t.cancel();
-          nextQuestion();
-        } else if (cancelTimer == true) {
-          t.cancel();
-        } else {
-          timer = timer - 1;
-        }
-        showTimer = timer.toString();
-      });
-    });
+  // overriding the setstate function to be called only if mounted
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 
+  // void startTimer() async {
+  //   const onesec = Duration(seconds: 1);
+  //   Timer.periodic(onesec, (Timer t) {
+  //     setState(() {
+  //       if (timer < 1) {
+  //         t.cancel();
+  //         nextQuestion();
+  //       } else if (cancelTimer == true) {
+  //         t.cancel();
+  //       } else {
+  //         timer = timer - 1;
+  //       }
+  //       showTimer = timer.toString();
+  //     });
+  //   });
+  // }
+
+  int wrongAttempts = 0;
+  bool isAnswerCorrect = false;
+
+// When the user clicks on an answer button
   void checkAnswer(String k) {
     if (myData[2][i.toString()] == myData[1][i.toString()][k]) {
-      //The Answer is Correnct
-      marks = marks + 5;
-      colorToShow = rightAns;
+      //defined points for each answer.
+      int points = 10;
+      if (wrongAttempts == 0) {
+        // Correct Answer on First Attempts. Add 10 points to the score
+        marks += points;
+        isAnswerCorrect = true;
+        colorToShow = rightAns;
+        print("$wrongAttempts WrongAttempts Add Mark 10 total $marks");
+      } else if (wrongAttempts == 1) {
+        // If the answer is wrong for first time, Points will be half of the score
+        marks += (points / 2).round();
+        isAnswerCorrect = true;
+        colorToShow = rightAns;
+        print("$wrongAttempts WrongAttempts Add Mark 5 total $marks");
+      } else if (wrongAttempts == 2) {
+        // 2 time wrong Attempst will no Points.
+        marks += points - points;
+        isAnswerCorrect = true;
+        colorToShow = rightAns;
+        print("$wrongAttempts WrongAttempts Add Mark 0 total $marks");
+      } else {
+        // 2 time wrong Attempst will no Points.
+        marks += (points - points) - ((points / 2).round());
+        isAnswerCorrect = true;
+        colorToShow = rightAns;
+        print("$wrongAttempts WrongAttempts Add Mark -5 total $marks");
+      }
     } else {
+      wrongAttempts++;
+      isAnswerCorrect = false;
       colorToShow = wrongAns;
     }
+
     setState(() {
-      cancelTimer = true;
-      mcqOptionColor[k] = colorToShow;
-      Timer(Duration(seconds: 2), nextQuestion);
+      // cancelTimer = true;
+      if (colorToShow == wrongAns) {
+        mcqOptionColor[k] = colorToShow;
+        Timer(Duration(seconds: 2), resetColorifWrong);
+      } else {
+        mcqOptionColor[k] = colorToShow;
+        Timer(Duration(seconds: 2), nextQuestion);
+      }
     });
   }
 
@@ -233,7 +284,7 @@ class _QuizPageState extends State<QuizPage> {
                 alignment: Alignment.topCenter,
                 child: Center(
                   child: Text(
-                    showTimer,
+                    "No Timer",
                     style: TextStyle(
                       fontSize: 35.0,
                       fontWeight: FontWeight.w700,

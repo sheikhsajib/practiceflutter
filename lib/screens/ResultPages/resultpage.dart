@@ -15,18 +15,18 @@ class _resultPageState extends State<resultPage> {
   int marks;
   _resultPageState(this.marks);
   List<String> resultTrophyImages = [
-    "assets/result/resultVeryGood.png",
-    "assets/result/resultGood.png",
-    "assets/result/resultFail.png",
+    "assets/results/resultVeryGood.jpg",
+    "assets/results/resultGood.jpg",
+    "assets/results/resultFail.jpg",
   ];
-  String message = "Good";
-  String resultTrophyImage = "";
+  late String message;
+  late String resultTrophyImage;
   @override
   void initState() {
-    if (marks < 20) {
+    if (marks < 10) {
       resultTrophyImage = resultTrophyImages[2];
       message = "You Should Try Hard..\n" + "You Scored $marks";
-    } else if (marks < 35) {
+    } else if (marks < 20) {
       resultTrophyImage = resultTrophyImages[1];
       message = "You Can Do Better..\n" + "You Scored $marks";
     } else {
@@ -43,6 +43,7 @@ class _resultPageState extends State<resultPage> {
         title: Text(
           "Result",
         ),
+        centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
