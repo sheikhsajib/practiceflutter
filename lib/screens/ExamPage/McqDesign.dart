@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:practiceflutter/screens/HomePage/HomePage.dart';
+import 'package:practiceflutter/screens/ResultPages/resultpage.dart';
 
 class LoadJson extends StatelessWidget {
   const LoadJson({super.key});
@@ -52,9 +54,13 @@ class _QuizPageState extends State<QuizPage> {
   int i = 1;
   int marks = 0;
 
-  Color colorToShow = Colors.indigo;
+  Color colorToShow = Colors.cyan;
   Color rightAns = Colors.green;
-  Color wrongAns = Colors.red;
+  Color wrongAns = Colors.orange;
+
+  int timer = 30;
+  bool cancelTimer = false;
+  String showTimer = "30";
 
   Map<String, Color> mcqOptionColor = {
     "a": Colors.cyan,
@@ -64,25 +70,48 @@ class _QuizPageState extends State<QuizPage> {
   };
 
   void nextQuestion() {
-    // canceltimer = false;
-    // timer = 30;
+    cancelTimer = false;
+    timer = 30;
     setState(() {
       if (i < 10) {
         // i = random_array[j];
         // j++;
         i++;
       } else {
-        // Navigator.of(context).pushReplacement(MaterialPageRoute(
-        //   builder: (context) => resultpage(marks: marks),
-        // ));
-        mcqOptionColor["a"] = Colors.cyan;
-        mcqOptionColor["b"] = Colors.cyan;
-        mcqOptionColor["c"] = Colors.cyan;
-        mcqOptionColor["d"] = Colors.cyan;
-        // disableAnswer = false;
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => resultPage(marks: marks),
+        ));
       }
+      mcqOptionColor["a"] = Colors.cyan;
+      mcqOptionColor["b"] = Colors.cyan;
+      mcqOptionColor["c"] = Colors.cyan;
+      mcqOptionColor["d"] = Colors.cyan;
+      // disableAnswer = false;
     });
-    // starttimer();
+    startTimer();
+  }
+
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  void startTimer() async {
+    const onesec = Duration(seconds: 1);
+    Timer.periodic(onesec, (Timer t) {
+      setState(() {
+        if (timer < 1) {
+          t.cancel();
+          nextQuestion();
+        } else if (cancelTimer == true) {
+          t.cancel();
+        } else {
+          timer = timer - 1;
+        }
+        showTimer = timer.toString();
+      });
+    });
   }
 
   void checkAnswer(String k) {
@@ -94,6 +123,7 @@ class _QuizPageState extends State<QuizPage> {
       colorToShow = wrongAns;
     }
     setState(() {
+      cancelTimer = true;
       mcqOptionColor[k] = colorToShow;
       Timer(Duration(seconds: 2), nextQuestion);
     });
@@ -185,18 +215,15 @@ class _QuizPageState extends State<QuizPage> {
             ),
             Expanded(
               flex: 6,
-              child: AbsorbPointer(
-                // absorbing: disableAnswer,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      choicebButton('a'),
-                      choicebButton('b'),
-                      choicebButton('c'),
-                      choicebButton('d'),
-                    ],
-                  ),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    choicebButton('a'),
+                    choicebButton('b'),
+                    choicebButton('c'),
+                    choicebButton('d'),
+                  ],
                 ),
               ),
             ),
@@ -206,7 +233,7 @@ class _QuizPageState extends State<QuizPage> {
                 alignment: Alignment.topCenter,
                 child: Center(
                   child: Text(
-                    "30",
+                    showTimer,
                     style: TextStyle(
                       fontSize: 35.0,
                       fontWeight: FontWeight.w700,
