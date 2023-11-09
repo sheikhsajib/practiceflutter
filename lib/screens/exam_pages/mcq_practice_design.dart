@@ -1,12 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ffi';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/screens/HomePage/HomePage.dart';
-import 'package:practiceflutter/screens/ResultPages/resultpage.dart';
+
+import 'package:practiceflutter/screens/home_pages/home.dart';
+import 'package:practiceflutter/screens/result_pages/practice_result_page.dart';
 
 class LoadJson extends StatelessWidget {
   const LoadJson({super.key});
@@ -58,10 +55,6 @@ class _QuizPageState extends State<QuizPage> {
   Color rightAns = Colors.green;
   Color wrongAns = Colors.orange;
 
-  // int timer = 30;
-  // bool cancelTimer = false;
-  // String showTimer = "30";
-
   Map<String, Color> mcqOptionColor = {
     "a": Colors.cyan,
     "b": Colors.cyan,
@@ -98,39 +91,66 @@ class _QuizPageState extends State<QuizPage> {
     // startTimer();
   }
 
-  @override
-  void initState() {
-    // startTimer();
-    super.initState();
-  }
-
-  // overriding the setstate function to be called only if mounted
-  @override
-  void setState(fn) {
-    if (mounted) {
-      super.setState(fn);
-    }
-  }
-
-  // void startTimer() async {
-  //   const onesec = Duration(seconds: 1);
-  //   Timer.periodic(onesec, (Timer t) {
-  //     setState(() {
-  //       if (timer < 1) {
-  //         t.cancel();
-  //         nextQuestion();
-  //       } else if (cancelTimer == true) {
-  //         t.cancel();
-  //       } else {
-  //         timer = timer - 1;
-  //       }
-  //       showTimer = timer.toString();
-  //     });
-  //   });
-  // }
-
   int wrongAttempts = 0;
   bool isAnswerCorrect = false;
+
+  void correctAnsPopUpDialog(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Container();
+      },
+      barrierDismissible: true,
+      barrierLabel: "",
+      transitionDuration: const Duration(milliseconds: 400),
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+          child: FadeTransition(
+            opacity: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+            child: AlertDialog(
+              title: const Text("Assalamu Alaikum"),
+              content: const Text(
+                  "Alhamdulillah \n Your Answer is Correct. \n Yes, Success Will come soon Inshallah."),
+              shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.0),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void wrongAnsPopUpDialog(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Container();
+      },
+      barrierDismissible: true,
+      barrierLabel: "",
+      transitionDuration: const Duration(milliseconds: 400),
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+          child: FadeTransition(
+            opacity: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+            child: AlertDialog(
+              title: const Text("Try Another"),
+              content: const Text(
+                  "Foinni \n You may try again \n Success come from practice."),
+              shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.0),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
 // When the user clicks on an answer button
   void checkAnswer(String k) {
@@ -142,6 +162,7 @@ class _QuizPageState extends State<QuizPage> {
         marks += points;
         isAnswerCorrect = true;
         colorToShow = rightAns;
+        correctAnsPopUpDialog(context);
         print("$wrongAttempts WrongAttempts Add Mark 10 total $marks");
       } else if (wrongAttempts == 1) {
         // If the answer is wrong for first time, Points will be half of the score
@@ -166,10 +187,10 @@ class _QuizPageState extends State<QuizPage> {
       wrongAttempts++;
       isAnswerCorrect = false;
       colorToShow = wrongAns;
+      wrongAnsPopUpDialog(context);
     }
 
     setState(() {
-      // cancelTimer = true;
       if (colorToShow == wrongAns) {
         mcqOptionColor[k] = colorToShow;
         Timer(Duration(seconds: 2), resetColorifWrong);
@@ -187,7 +208,9 @@ class _QuizPageState extends State<QuizPage> {
         horizontal: 20.0,
       ),
       child: MaterialButton(
-        onPressed: () => checkAnswer(k),
+        onPressed: () {
+          checkAnswer(k);
+        },
         child: Text(
           myData[1][i.toString()][k],
           style: TextStyle(
@@ -237,7 +260,7 @@ class _QuizPageState extends State<QuizPage> {
                 context: context,
                 builder: (context) => AlertDialog(
                       title: Text(
-                        "Quizstar",
+                        "Job Combat Quiz",
                       ),
                       content: Text("Do You Want to Close Your Learning."),
                       actions: <Widget>[

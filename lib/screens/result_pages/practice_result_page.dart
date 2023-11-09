@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/screens/HomePage/HomePage.dart';
+import 'package:practiceflutter/screens/home_pages/home.dart';
+import 'package:practiceflutter/widgets/confetti_widgets.dart';
 
 class resultPage extends StatefulWidget {
   int marks;
@@ -54,6 +57,7 @@ class _resultPageState extends State<resultPage> {
               child: Container(
                 child: Column(
                   children: <Widget>[
+                    ConfettiWidgets(),
                     Material(
                       child: Container(
                         width: 300.0,
@@ -81,6 +85,7 @@ class _resultPageState extends State<resultPage> {
                             ),
                           ),
                         )),
+                    const ConfettiWidgets(),
                   ],
                 ),
               ),

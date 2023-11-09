@@ -1,14 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/screens/HomePage/HomePage.dart';
-import 'package:practiceflutter/screens/HomePage/StartPage.dart';
+import 'package:practiceflutter/screens/home_pages/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -20,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => const HomePage(),
           ));
     });
   }

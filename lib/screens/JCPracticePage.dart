@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:practiceflutter/screens/ExamPage/McqDesign.dart';
+
+import 'package:practiceflutter/screens/exam_pages/mcq_practice_design.dart';
 
 class JCPracticePage extends StatefulWidget {
   const JCPracticePage({super.key});

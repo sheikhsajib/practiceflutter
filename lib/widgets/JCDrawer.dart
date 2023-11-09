@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:practiceflutter/screens/JCLeaderBoard.dart';
 import 'package:practiceflutter/screens/JCProfiles.dart';
-import 'package:practiceflutter/screens/ExamPage/McqDesign.dart';
+import 'package:practiceflutter/screens/exam_pages/mcq_practice_design.dart';
 
 class JCDrawer extends StatefulWidget {
   const JCDrawer({super.key});
@@ -49,7 +49,7 @@ class _JCDrawerState extends State<JCDrawer> {
           ),
           ListTile(
             leading: Icon(Icons.leaderboard),
-            title: Text("My Ranking"),
+            title: const Text("My Ranking"),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => JCLeaderBoard()));

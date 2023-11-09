@@ -1,15 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:practiceflutter/screens/JCBasicCoursePage.dart';
-import 'package:practiceflutter/screens/ExamPage/JCExamPage.dart';
+import 'package:practiceflutter/screens/exam_pages/JCExamPage.dart';
 import 'package:practiceflutter/screens/JCExplorePage.dart';
 import 'package:practiceflutter/screens/JCPeopleQueryPages.dart';
 import 'package:practiceflutter/screens/JCPostPage.dart';
 import 'package:practiceflutter/screens/JCPracticePage.dart';
 import 'package:practiceflutter/screens/JCProPlanPage.dart';
-import 'package:practiceflutter/screens/HomePage/StartPage.dart';
+import 'package:practiceflutter/screens/home_pages/home_dashboard_page.dart';
 
 class JCHomePageTopMenu extends StatefulWidget {
   const JCHomePageTopMenu({super.key});

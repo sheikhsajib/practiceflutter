@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:practiceflutter/splash.dart';
-import 'package:practiceflutter/screens/HomePage/HomePage.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -13,13 +12,6 @@ void main() {
     ),
     debugShowCheckedModeBanner: false,
     title: "Practice Flutter",
-    //  home: ContainerBorderPractice(),
-    // home: RowPractice(),
-    // home: ColumnPractice(),
-    // home: ImagePractice(),
-    // home: AppBarPractice(),
-    // home: LoadingPage(),
-    // home: HomePage(),
-    home: SplashScreen(),
+    home: const SplashScreen(),
   ));
 }

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:practiceflutter/widgets/JCAppBar.dart';
 import 'package:practiceflutter/widgets/JCDrawer.dart';
-import 'package:practiceflutter/screens/HomePage/JCHomePageTopMenu.dart';
+import 'package:practiceflutter/screens/home_pages/home_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
