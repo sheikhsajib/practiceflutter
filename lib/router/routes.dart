@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practiceflutter/screens/JCProfiles.dart';
 import 'package:practiceflutter/screens/home_pages/home.dart';
 import 'package:practiceflutter/splash.dart';
 
@@ -9,16 +10,11 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => const SplashScreen());
 
-      case "/HomePage":
+      case HomePage.route:
         return MaterialPageRoute(builder: (_) => const HomePage());
 
-      // case TravellerScreen.route:
-      //   return createRoute(
-      //       child: const TravellerScreen(),
-      //       slidePosition: PageTransitionMode.fade);
-
-      // case FlightListScreen.route:
-      //   return createRoute(child: const FlightListScreen());
+      case JCProfile.route:
+        return createRoute(child: const JCProfile());
       // case SortAndFilter.route:
       //   return createRoute(
       //       child: const SortAndFilter(),

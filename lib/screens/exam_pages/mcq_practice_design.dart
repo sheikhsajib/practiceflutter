@@ -1,43 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:practiceflutter/model/right_ans_funny_comments_model.dart';
 import 'package:practiceflutter/screens/home_pages/home.dart';
 import 'package:practiceflutter/screens/result_pages/practice_result_page.dart';
-
-class LoadJson extends StatelessWidget {
-  const LoadJson({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-          future: DefaultAssetBundle.of(context)
-              .loadString("assets/data/qbank.json"),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List myData = json.decode(snapshot.data.toString());
-              if (myData == null) {
-                return Center(
-                  child: Text(
-                    "Loading",
-                  ),
-                );
-              } else {
-                return QuizPage(myData: myData);
-              }
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
-    );
-  }
-}
+import 'package:practiceflutter/screens/exam_pages/mcq_helper_function.dart';
 
 class QuizPage extends StatefulWidget {
-  final myData;
+  dynamic myData;
   QuizPage({Key? key, this.myData}) : super(key: key);
 
   @override
@@ -45,6 +18,24 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<String> funnyComments = [];
+
+  Future<String> readRightAnsFunnyCommentJson() async {
+    final String response = await rootBundle
+        .loadString("assets/data/right_ans_funny_comments.json");
+    final data = await json.decode(response);
+    setState(() {
+      funnyComments = data;
+    });
+    return "Success";
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    this.readRightAnsFunnyCommentJson();
+  }
+
   List myData;
   _QuizPageState({required this.myData});
 
@@ -94,75 +85,35 @@ class _QuizPageState extends State<QuizPage> {
   int wrongAttempts = 0;
   bool isAnswerCorrect = false;
 
-  void correctAnsPopUpDialog(BuildContext context) {
-    showGeneralDialog(
-      context: context,
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return Container();
-      },
-      barrierDismissible: true,
-      barrierLabel: "",
-      transitionDuration: const Duration(milliseconds: 400),
-      transitionBuilder: (context, animation, secondaryAnimation, child) {
-        return ScaleTransition(
-          scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
-          child: FadeTransition(
-            opacity: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
-            child: AlertDialog(
-              title: const Text("Assalamu Alaikum"),
-              content: const Text(
-                  "Alhamdulillah \n Your Answer is Correct. \n Yes, Success Will come soon Inshallah."),
-              shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.0),
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void wrongAnsPopUpDialog(BuildContext context) {
-    showGeneralDialog(
-      context: context,
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return Container();
-      },
-      barrierDismissible: true,
-      barrierLabel: "",
-      transitionDuration: const Duration(milliseconds: 400),
-      transitionBuilder: (context, animation, secondaryAnimation, child) {
-        return ScaleTransition(
-          scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
-          child: FadeTransition(
-            opacity: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
-            child: AlertDialog(
-              title: const Text("Try Another"),
-              content: const Text(
-                  "Foinni \n You may try again \n Success come from practice."),
-              shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.0),
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-// When the user clicks on an answer button
+  // When the user clicks on an answer button
   void checkAnswer(String k) {
     if (myData[2][i.toString()] == myData[1][i.toString()][k]) {
       //defined points for each answer.
       int points = 10;
       if (wrongAttempts == 0) {
         // Correct Answer on First Attempts. Add 10 points to the score
+
         marks += points;
         isAnswerCorrect = true;
         colorToShow = rightAns;
-        correctAnsPopUpDialog(context);
+
+        randomComments() async {
+          final nameRepository = NameRepository();
+          final names = await nameRepository.loadNames();
+          final random = Random();
+          final randomIndex = random.nextInt(names.length);
+          final randomName = names[randomIndex].name;
+          return randomName;
+          print(randomName);
+        }
+
+        correctAnsPopUpDialog(
+          context,
+          rightAnsfunnyComments: randomComments().toString(),
+          rightBecauseOf: "You choose the right Answer",
+        );
+        print("Number of Comments is ${funnyComments.length}");
+
         print("$wrongAttempts WrongAttempts Add Mark 10 total $marks");
       } else if (wrongAttempts == 1) {
         // If the answer is wrong for first time, Points will be half of the score
@@ -187,7 +138,11 @@ class _QuizPageState extends State<QuizPage> {
       wrongAttempts++;
       isAnswerCorrect = false;
       colorToShow = wrongAns;
-      wrongAnsPopUpDialog(context);
+      wrongAnsPopUpDialog(
+        context,
+        wrongAnsfunnyComments: "Cakri Thakbe na",
+        wrongBecauseOf: "You Made a Mistake",
+      );
     }
 
     setState(() {
@@ -281,7 +236,7 @@ class _QuizPageState extends State<QuizPage> {
                 child: Text(
                   myData[0][i.toString()],
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 26.0,
                     fontFamily: "Quando",
                   ),
                 ),

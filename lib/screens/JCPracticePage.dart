@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:practiceflutter/screens/exam_pages/mcq_practice_design.dart';
+import 'package:practiceflutter/screens/exam_pages/load_mcq.dart';
 
 class JCPracticePage extends StatefulWidget {
   const JCPracticePage({super.key});
@@ -10,7 +9,7 @@ class JCPracticePage extends StatefulWidget {
 }
 
 class _JCPracticePageState extends State<JCPracticePage> {
-  List<String> subject_icons = [
+  List<String> subjectIcons = [
     'assets/icons/Bangla_icon.png',
     'assets/icons/English_icon.png',
     'assets/icons/Bangladesh_icon.png',
@@ -36,7 +35,7 @@ class _JCPracticePageState extends State<JCPracticePage> {
     "Geography",
   ];
 
-  final List<Color> SubjectCategoryColors = [
+  final List<Color> subjectCategoryColors = [
     Colors.green,
     Colors.amber,
     Colors.red,
@@ -51,9 +50,9 @@ class _JCPracticePageState extends State<JCPracticePage> {
   ];
 //// An Widget For Subjects Category in a card
   Widget subjectCategoryCard(
-    Color SubjectCategoryColors,
+    Color subjectCategoryColors,
     String subjectsName,
-    String subject_icons,
+    String subjectIcons,
   ) {
     return InkWell(
       onTap: () {
@@ -68,7 +67,7 @@ class _JCPracticePageState extends State<JCPracticePage> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: SubjectCategoryColors,
+          color: subjectCategoryColors,
           boxShadow: [
             BoxShadow(
               color: Color(0xffDDDDDD),
@@ -88,7 +87,7 @@ class _JCPracticePageState extends State<JCPracticePage> {
                 height: 150,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: SubjectCategoryColors.withOpacity(0.8),
+                  color: subjectCategoryColors.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -100,7 +99,7 @@ class _JCPracticePageState extends State<JCPracticePage> {
                   ],
                 ),
                 child: Image.asset(
-                  subject_icons,
+                  subjectIcons,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -138,9 +137,9 @@ class _JCPracticePageState extends State<JCPracticePage> {
         ),
         itemBuilder: (context, index) {
           return subjectCategoryCard(
-            SubjectCategoryColors[index],
+            subjectCategoryColors[index],
             subjectsName[index],
-            subject_icons[index],
+            subjectIcons[index],
           );
         },
       ),

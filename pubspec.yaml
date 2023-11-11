@@ -71,6 +71,7 @@ flutter:
     - assets/results/resultGood.jpg
     - assets/results/resultFail.jpg
     - assets/data/qbank.json
+    - assets/data/right_ans_funny_comments.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

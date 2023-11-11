@@ -31,7 +31,7 @@ List<String> subjects = [
 
 class JCProfile extends StatelessWidget {
   const JCProfile({super.key});
-
+  static const route = "/ProfilePage";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
