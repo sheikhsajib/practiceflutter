@@ -12,10 +12,20 @@ class NameModel {
 }
 
 class NameRepository {
+  List<NameModel> _names = [];
   Future<List<NameModel>> loadNames() async {
     final jsonString = await rootBundle
         .loadString('assets/data/right_ans_funny_comments.json');
     final List<dynamic> jsonList = json.decode(jsonString);
     return jsonList.map((json) => NameModel.fromJson(json)).toList();
+  }
+
+  String getRandomName() {
+    if (_names.isEmpty) {
+      // Handle case when data is not loaded yet
+      return 'Loading...';
+    }
+    final randomIndex = DateTime.now().millisecondsSinceEpoch % _names.length;
+    return _names[randomIndex].name;
   }
 }

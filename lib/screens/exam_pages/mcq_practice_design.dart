@@ -18,22 +18,24 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<String> funnyComments = [];
+  // List<String?> funnyComments = [];
 
-  Future<String> readRightAnsFunnyCommentJson() async {
-    final String response = await rootBundle
-        .loadString("assets/data/right_ans_funny_comments.json");
-    final data = await json.decode(response);
-    setState(() {
-      funnyComments = data;
-    });
-    return "Success";
-  }
+  // Future<String> readRightAnsFunnyCommentJson() async {
+  //   final String response = await rootBundle
+  //       .loadString("assets/data/right_ans_funny_comments.json");
+  //   final data = await json.decode(response);
+  //   setState(() {
+  //     funnyComments = data;
+  //   });
+  //   return "Success";
+  // }
+// Usage:
+  final nameRepository = NameRepository();
 
-  @override
+// Load names when the page initializes
   void initState() {
-    // TODO: implement initState
-    this.readRightAnsFunnyCommentJson();
+    super.initState();
+    nameRepository.loadNames();
   }
 
   List myData;
@@ -96,23 +98,17 @@ class _QuizPageState extends State<QuizPage> {
         marks += points;
         isAnswerCorrect = true;
         colorToShow = rightAns;
-
-        randomComments() async {
-          final nameRepository = NameRepository();
-          final names = await nameRepository.loadNames();
-          final random = Random();
-          final randomIndex = random.nextInt(names.length);
-          final randomName = names[randomIndex].name;
-          return randomName;
-          print(randomName);
-        }
+        // Get a random name anywhere in your project
+        // Get a random name anywhere in your project
+        final randomName = nameRepository.getRandomName();
+        print('Random name: $randomName');
 
         correctAnsPopUpDialog(
           context,
-          rightAnsfunnyComments: randomComments().toString(),
+          rightAnsfunnyComments: randomName,
           rightBecauseOf: "You choose the right Answer",
         );
-        print("Number of Comments is ${funnyComments.length}");
+        print("Number of Comments is random Names");
 
         print("$wrongAttempts WrongAttempts Add Mark 10 total $marks");
       } else if (wrongAttempts == 1) {
